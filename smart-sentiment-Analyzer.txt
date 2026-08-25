@@ -1,0 +1,32 @@
+class SentimentAnalyzer:
+    def __init__(self):
+        self.positive_words = ['good', 'great', 'happy', 'excellent', 'love', 'wonderful', 'best', 'amazing']
+        self.negative_words = ['bad', 'sad', 'terrible', 'hate', 'worst', 'angry', 'poor', 'awful']
+
+    def analyze(self, text):
+        text_lower = text.lower()
+        pos_count = sum(1 for word in self.positive_words if word in text_lower)
+        neg_count = sum(1 for word in self.negative_words if word in text_lower)
+
+        if pos_count > neg_count:
+            return "Positive 😊"
+        elif neg_count > pos_count:
+            return "Negative 😔"
+        else:
+            return "Neutral 😐"
+
+if __name__ == "__main__":
+    print("🤖 Welcome to the Smart Sentiment Analyzer!")
+    print("-" * 40)
+    
+    analyzer = SentimentAnalyzer()
+    
+    while True:
+        user_input = input("\nEnter a sentence to analyze (or type 'exit' to stop): ")
+        
+        if user_input.lower() == 'exit':
+            print("Goodbye! 👋")
+            break
+            
+        result = analyzer.analyze(user_input)
+        print(f"Sentiment Result: {result}")
